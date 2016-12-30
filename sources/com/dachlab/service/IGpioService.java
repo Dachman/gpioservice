@@ -98,4 +98,9 @@ public interface IGpioService {
 	 */
 	void setPinState(GpioPinDigitalOutput pin, PinState pinState);
 
+	/**
+	 * Shutdown any GPIO activities / threads.
+	 */
+	void shutdownGPIO();
+
 }

@@ -170,10 +170,23 @@ public class GpioService implements IGpioService {
 		return pin;
 	}
 
+	/**
+	 * Print GPIO state.
+	 */
 	private void printGPIOPinStates() {
 		final Collection<GpioPin> pinsCollection = gpio.getProvisionedPins();
 		for (GpioPin gpioPin : pinsCollection) {
 			log.info(gpioPin.getName() + " : " + (gpioPin == null ? "" : ((GpioPinDigitalOutput) gpioPin).getState()));
 		}
+	}
+
+	/**
+	 * Shutdown any GPIO activities / threads.
+	 */
+	@Override
+	public void shutdownGPIO() {
+		log.info("Shutting down GPIO.");
+		gpio.shutdown();
+		log.info("GPIO activities and threads stopped.");
 	}
 }
